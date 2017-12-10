@@ -3,6 +3,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class TicTacToeGraphics extends Application {
@@ -16,34 +19,41 @@ public class TicTacToeGraphics extends Application {
     launch(args);
   }
 
-  public class TileCell extends Pane {
-
+  public class TileCell extends StackPane {
+    Text text = new Text();
     private String playerName;
     private int row;
     private int col;
 
     public TileCell(String playerName, int row, int col) {
       this.playerName = playerName;
+      text.setFont(Font.font(70));
       setStyle("-fx-border-color:black");
-      this.setPrefSize(300, 300);
-      this.setOnMouseClicked(e -> handleMouseClick());
+      this.setPrefSize(200, 200);
+      this.setOnMouseClicked(event -> handleMouseClick());
+      this.getChildren().addAll(text);
 
     }
 
     private void handleMouseClick() {
       boolean wasSetBoardSuccessful = ticTacToeBoard.setBoardAt(row, col);
-      this.setAccessibleText("X");
+      text.setText("X");
       if (wasSetBoardSuccessful) {
-        return;
-      } else {
         int turn = ticTacToeBoard.getTurn();
         if (turn % 2 == 0) {
-          this.setAccessibleText("X");
+          text.setText("X");
         } else {
-          this.setAccessibleText("O");
+          text.setText("O");
+        }
+
+        String winner = ticTacToeBoard.getWinner();
+
+        if (winner != null) {
+
         }
 
       }
+
     }
 
     public String getPlayerName() {
@@ -68,7 +78,7 @@ public class TicTacToeGraphics extends Application {
     BorderPane borderPane = new BorderPane();
     borderPane.setCenter(tilePane);
 
-    Scene scene = new Scene(borderPane, 600, 400);
+    Scene scene = new Scene(borderPane, 600, 600);
     primaryStage.setScene(scene);
     primaryStage.setTitle("Tic Tac Toe");
     primaryStage.show();
