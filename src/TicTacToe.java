@@ -76,7 +76,7 @@ public class TicTacToe {
 	  
     //case1: loop over each row
     for (int row =0; row < board.length; row++) {
-        if (board[row][0] == board[row][1] && board[row][1] == board[row][2]
+        if (board[row][0].equals(board[row][1]) && board[row][1].equals(board[row][2])
                 && board[row][0] != null) {
             gameOnGoing = false;
             return "The Winner is " + board[row][0] + "!";
@@ -85,7 +85,7 @@ public class TicTacToe {
 
     //case2: loop over each column
     for (int col=0; col < board[0].length; col++) {
-        if (board[0][col] == board[1][col] && board[1][col] == board[2][col]
+        if (board[0][col].equals(board[1][col]) && board[1][col].equals(board[2][col])
                 && board[0][col] != null) {
             gameOnGoing = false;
             return "The Winner is " + board[0][col] + "!";
@@ -93,13 +93,13 @@ public class TicTacToe {
     }
 
     //case3: check the diagonals
-    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]
+    if (board[0][0].equals(board[1][1]) && board[1][1].equals(board[2][2])
             && board[0][0] != null) {
         gameOnGoing = false;
         return "The Winner is " + board[0][0] + "!";
     }
 
-    if (board[2][0] == board[1][1] && board[1][1] == board[0][2]
+    if (board[2][0].equals(board[1][1]) && board[1][1].equals(board[0][2])
             && board[2][0] != null) {
 	    gameOnGoing = false;
         return "The Winner is " + board[2][0] + "!";
