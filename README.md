@@ -15,7 +15,7 @@ Our tic-tac-toe project referenced MP5, ConnectN to understand the logic of 2d-a
 
 WE:
 
-Did something original! - We googled and stack-overflowed enough to call it original...!
+Did something original! We googled and stack-overflowed enough to create this masterpiecel. We used graphic interface instead of text-based - that is something new from what we learned in CS125 MPs.
 
 Ensured that both partners have roles in the project! - check the above sentences of this document.
 
