@@ -51,7 +51,7 @@ public class TicTacToe {
    */
   public void checkTurn() {
 	// checks the turn of player
-	  if (turn%2 == 0) {
+	  if (turn % 2 == 0) {
 		  System.out.println("PLAYER_1's turn");
 	  } else {
 		  System.out.println("PLAYER_2's turn");
@@ -69,7 +69,7 @@ public class TicTacToe {
     printBoard();
 
 	  //checks for valid board spot
-	  if (row >= 3 || col >= 3) {
+	  if (row >= ROWS || col >= COLS) {
 		  System.out.println("Please click the spot within the range.");
 		  return false;
 	  }
@@ -78,13 +78,13 @@ public class TicTacToe {
       return false;
     }
 	  
-    if (this.board[row][col].equals("") && turn%2 == 0) {
+    if (this.board[row][col].equals("") && turn % 2 == 0) {
 		  this.board[row][col] = PLAYER_1;
 		  turn++;
 		  return true;
     }
       
-    if (this.board[row][col].equals("") && turn%2 == 1) {
+    if (this.board[row][col].equals("") && turn % 2 == 1) {
 		  this.board[row][col] = PLAYER_2;
 		  turn++;
 		  return true;
@@ -146,4 +146,19 @@ public class TicTacToe {
     }
   }
 
+  /**
+   * Resets the board.
+   */
+  public void reset() {
+    this.turn = 0;
+
+    this.gameOnGoing = true;
+
+    //reset board
+    for (int row = 0; row < ROWS; row++) {
+      for (int col = 0; col < COLS; col++) {
+        this.board[row][col] = "";
+      }
+    }
+  }
 }
