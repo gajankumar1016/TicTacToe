@@ -83,15 +83,6 @@ public class TicTacToeGraphics extends Application {
           statusOfGameLabel.setText("The winner is: " + winner);
         }
       }
-
-    }
-
-    public String getPlayerName() {
-      return playerName;
-    }
-
-    public void setPlayerName(String playerName) {
-      this.playerName = playerName;
     }
   }
 }
