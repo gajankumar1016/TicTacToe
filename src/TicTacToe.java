@@ -1,8 +1,11 @@
+/**
+ * Class that keeps track of the board state and performs necessary calculations.
+ */
 public class TicTacToe {
 	
   //perhaps in the future players could enter their own names to play
-  private static final String PLAYER_1 = "X";
-  private static final String PLAYER_2 = "O";
+  public static final String PLAYER_1 = "X";
+  public static final String PLAYER_2 = "O";
 
   private static final int ROWS = 3;
   private static final int COLS = 3;
@@ -12,7 +15,9 @@ public class TicTacToe {
   
   private boolean gameOnGoing = true; // false if the game ended
 
-  
+  /**
+   * Constructor that initializes each board space to an empty string.
+   */
   public TicTacToe() {
     this.board = new String[ROWS][COLS];
     // fill all the spots as empty string.
@@ -27,6 +32,10 @@ public class TicTacToe {
     return turn;
   }
 
+  /**
+   * Tells whether game is still going.
+   * @return true if still going, false if stalemate
+   */
   public boolean isGameStillGoing() {
 	  // checks if the game is on-going or not	  
 	  if (turn == 8) { // maximum spots reached
@@ -35,8 +44,11 @@ public class TicTacToe {
 		  System.out.print("No more spots to fill in. The game will restart.");
 	  }
       return gameOnGoing;
-  } 
+  }
 
+  /**
+   *Prints the player whose turn it is.
+   */
   public void checkTurn() {
 	// checks the turn of player
 	  if (turn%2 == 0) {
@@ -46,20 +58,23 @@ public class TicTacToe {
 	  }
   }
 
+  /**
+   * Sets the board at a given location.
+   * @param row row
+   * @param col column
+   * @return true if successful set, false otherwise
+   */
   public boolean setBoardAt(int row, int col) {
-    System.out.println("Args to setBoard" + "row: " + row + "col: " + col);
+    System.out.println("Args to setBoard" + "row: " + row + "   col: " + col);
     printBoard();
-    
-	  //this method should utilize the turn number to set the correct player
-	  
-	  // does
+
+	  //checks for valid board spot
 	  if (row >= 3 || col >= 3) {
 		  System.out.println("Please click the spot within the range.");
 		  return false;
 	  }
 
     if (!this.board[row][col].equals("")) {
-      System.out.println("Here");
       return false;
     }
 	  
@@ -78,6 +93,10 @@ public class TicTacToe {
     return  false;
   }
 
+  /**
+   * Returns the winner
+   * @return Returns winner's string name if one is present, null otherwise
+   */
   public String getWinner() {
     //break this up into horizontal, vertical, and diagonal
 	  
@@ -115,6 +134,9 @@ public class TicTacToe {
   	return null;
   }
 
+  /**
+   * Prints the board for debugging purposes.
+   */
   private void printBoard() {
     for (int i = 0; i < ROWS; i++) {
       for (int j = 0; j < COLS; j++) {
