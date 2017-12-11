@@ -3,6 +3,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -51,6 +52,8 @@ public class TicTacToeGraphics extends Application {
     //made constructor private so it can only be used within the TicTacToeGraphics class
     private TileCell(String playerName, int row, int col) {
       this.playerName = playerName;
+      this.row = row;
+      this.col = col;
       text.setFont(Font.font(80));
       setStyle("-fx-border-color:black");
       this.setPrefSize(200, 200);
@@ -64,11 +67,12 @@ public class TicTacToeGraphics extends Application {
       if (isWinnerPresent) {
         return;
       }
-      boolean wasSetBoardSuccessful = ticTacToeBoard.setBoardAt(row, col);
-      text.setText("X");
+
+      boolean wasSetBoardSuccessful = ticTacToeBoard.setBoardAt(this.row, this.col);
+      System.out.println("set board: " + wasSetBoardSuccessful);
       if (wasSetBoardSuccessful) {
-        int turn = 0;//ticTacToeBoard.getTurn();
-        if (turn % 2 == 0) {
+        int turn = ticTacToeBoard.getTurn();
+        if (turn % 2 == 1) {
           text.setText("X");
           statusOfGameLabel.setText("O's turn");
         } else {
@@ -79,8 +83,13 @@ public class TicTacToeGraphics extends Application {
         String winner = ticTacToeBoard.getWinner();
 
         if (winner != null) {
+          System.out.println("There was a winner");
           isWinnerPresent = true;
           statusOfGameLabel.setText("The winner is: " + winner);
+        }
+
+        if (ticTacToeBoard.getTurn() == 9) {
+          statusOfGameLabel.setText("Stalemate");
         }
       }
     }
